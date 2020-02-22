@@ -25,7 +25,6 @@ public class DepartmentRestController {
 
     @PostMapping("/api/department")
     public void saveDepartment(@RequestBody Department department){
-        System.out.println(department.toString());
         departmentService.saveDepartment(department);
         System.out.println("Dept Saved Successfully");
     }

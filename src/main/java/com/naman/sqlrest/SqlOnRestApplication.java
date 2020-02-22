@@ -13,9 +13,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  https://www.javahelps.com/2017/11/restful-crud-with-java-and-mysql-in.html
  https://spring.io/guides/gs/accessing-data-mysql/
  https://kyup.com/tutorials/create-new-user-grant-permissions-mysql/
-https://spring.io/guides/gs/accessing-data-mysql/
+ https://spring.io/guides/gs/accessing-data-mysql/
 
- Things to on mysql shell:
+ Things to do on mysql shell for setting up database:
  CREATE DATABASE user_db;
  CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
  GRANT ALL PRIVILEGES ON user_db.*  TO 'user'@'localhost';
@@ -31,16 +31,15 @@ https://spring.io/guides/gs/accessing-data-mysql/
 
 @SpringBootApplication
 public class SqlOnRestApplication implements CommandLineRunner {
-	public static void main(String[] args) {
-		SpringApplication.run(SqlOnRestApplication.class, args);
-	}
-
-
 	@Autowired
 	private EmployeeRepository repository;
 
 	@Autowired
 	private DepartmentRepository departmentRepository;
+
+	public static void main(String[] args) {
+		SpringApplication.run(SqlOnRestApplication.class, args);
+	}
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Saving dept in the repo");
@@ -50,25 +49,20 @@ public class SqlOnRestApplication implements CommandLineRunner {
 
 		Department department1 = new Department();
 		department1.setDepartmentName("cimd");
-
 		departmentRepository.save(department1);
 
 
 		System.out.println("Saving employees in the reop");
-
 		Employee employee = new Employee();
-		employee.setId(12);
 		employee.setName("naman");
 		employee.setDepartment(department);
 		employee.setSalary("10000000");
 		repository.save(employee);
 
 		Employee employee1 = new Employee();
-		employee1.setId(13);
 		employee1.setName("jan");
 		employee1.setDepartment(department1);
 		employee1.setSalary("100000");
 		repository.save(employee1);
-
 	}
 }

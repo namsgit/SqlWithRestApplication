@@ -25,7 +25,6 @@ public class EmployeeRestController {
 
     @PostMapping("/api/employees")
     public void saveEmployee(@RequestBody Employee employee){
-        System.out.println(employee.toString());
         employeeService.saveEmployee(employee);
         System.out.println("Employee Saved Successfully");
     }
