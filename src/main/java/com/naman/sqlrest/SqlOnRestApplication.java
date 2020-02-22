@@ -1,6 +1,8 @@
 package com.naman.sqlrest;
 
+import com.naman.sqlrest.entity.Department;
 import com.naman.sqlrest.entity.Employee;
+import com.naman.sqlrest.repository.DepartmentRepository;
 import com.naman.sqlrest.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,29 +30,45 @@ https://spring.io/guides/gs/accessing-data-mysql/
 */
 
 @SpringBootApplication
-public class SqlOnRestApplication {
+public class SqlOnRestApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SqlOnRestApplication.class, args);
 	}
 
 
-//	@Autowired
-//	private EmployeeRepository repository;
-//
-//	@Override
-//	public void run(String... args) throws Exception {
-//		System.out.println("Saving employees in the reop");
-//		Employee employee = new Employee();
-//		employee.setName("naman");
-//		employee.setDepartment("sag");
-//		employee.setSalary("10000000");
-//		repository.save(employee);
-//
-//		Employee employee1 = new Employee();
-//		employee1.setName("jan");
-//		employee1.setDepartment("sag");
-//		employee1.setSalary("100000");
-//		repository.save(employee1);
-//
-//	}
+	@Autowired
+	private EmployeeRepository repository;
+
+	@Autowired
+	private DepartmentRepository departmentRepository;
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println("Saving dept in the repo");
+		Department department = new Department();
+		department.setDepartmentName("sag");
+		departmentRepository.save(department);
+
+		Department department1 = new Department();
+		department1.setDepartmentName("cimd");
+
+		departmentRepository.save(department1);
+
+
+		System.out.println("Saving employees in the reop");
+
+		Employee employee = new Employee();
+		employee.setId(12);
+		employee.setName("naman");
+		employee.setDepartment(department);
+		employee.setSalary("10000000");
+		repository.save(employee);
+
+		Employee employee1 = new Employee();
+		employee1.setId(13);
+		employee1.setName("jan");
+		employee1.setDepartment(department1);
+		employee1.setSalary("100000");
+		repository.save(employee1);
+
+	}
 }

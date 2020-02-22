@@ -3,20 +3,21 @@ package com.naman.sqlrest.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Employee")
+@Table(name = "employee")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id")
     private long id;
 
-    @Column(name = "NAME")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "SALARY")
+    @Column(name = "salary")
     private String salary;
 
-    @Column(name = "DEPARTMENT")
-    private String department;
+    @ManyToOne
+    private Department department;
 
     public long getId() {
         return id;
@@ -42,12 +43,21 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary='" + salary + '\'' +
+                ", department=" + department +
+                '}';
+    }
 }
