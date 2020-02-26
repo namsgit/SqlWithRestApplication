@@ -18,6 +18,11 @@ public class DepartmentRestController {
         return departmentService.retrieveDepartment();
     }
 
+    @GetMapping("/api/department/{departmentName}")
+    public Department getDepartmentByName(@PathVariable(name="departmentName")String departmentName) {
+        return departmentService.getDepartmentByName(departmentName);
+    }
+
     @GetMapping("/api/department/{departmentId}")
     public Department getDepartment(@PathVariable(name="departmentId")Long departmentId) {
         return departmentService.getDepartment(departmentId);
