@@ -14,12 +14,12 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public abstract class DepartmentRepositoryImpl implements DepartmentRepository {
+public abstract class DepartmentRepositoryCustomImpl implements DepartmentRepositoryCustom {
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public Department getDepartmentByName(String departmentName) {
+    public Department findDepartmentByName(String departmentName) {
         Query query = entityManager.createQuery(
                 "SELECT e FROM Department e where e.departmentName = :departmentName", Department.class);
 

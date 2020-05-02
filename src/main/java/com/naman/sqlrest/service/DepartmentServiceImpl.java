@@ -2,6 +2,7 @@ package com.naman.sqlrest.service;
 
 import com.naman.sqlrest.entity.Department;
 import com.naman.sqlrest.repository.DepartmentRepository;
+import com.naman.sqlrest.repository.DepartmentRepositoryCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +45,8 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentRepository.save(department);
     }
 
-    @Override
-    public Department getDepartmentByName(String departmentName) {
-        return departmentRepository.getDepartmentByName(departmentName);
-    }
+//    @Override
+//    public Department getDepartmentByName(String departmentName) {
+//        return departmentRepository.findDepartmentByName(departmentName);
+//    }
 }
